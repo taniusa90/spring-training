@@ -1,7 +1,9 @@
 package com.cydeo.proxy;
 
 import com.cydeo.entity.Comment;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PushCommentNotificationProxy implements CommentNotificationProxy{
 
     @Override
