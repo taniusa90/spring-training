@@ -11,6 +11,7 @@ public abstract class Case {
     private String manufacturer;
     private String powerSupply;
 
+
     public Case(String model, String manufacturer, String powerSupply) {
         this.model = model;
         this.manufacturer = manufacturer;
