@@ -1,8 +1,10 @@
 package com.cydeo.bootstrap;
 
+import com.cydeo.model.Course;
 import com.cydeo.model.Student;
 import com.github.javafaker.Faker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,5 +20,19 @@ public class DataGenerator {
         );
         return students;
     }
+
+    public static List<Course> courseList() {
+        List<Course> courseList = Arrays.asList(
+                new Course("Java"),
+                new Course("Java"),
+                new Course("Spring"),
+                new Course("Agile"),
+                new Course("SDLC")
+        );
+        return courseList;
+    }
+
+
+
 
 }
