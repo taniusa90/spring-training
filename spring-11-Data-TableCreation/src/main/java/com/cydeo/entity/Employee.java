@@ -3,8 +3,6 @@ package com.cydeo.entity;
 import com.cydeo.Enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import javax.naming.ldap.PagedResultsControl;
 import javax.persistence.*;
 import java.time.LocalDate;
 
