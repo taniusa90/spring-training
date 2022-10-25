@@ -22,10 +22,12 @@ public class Payment {
     private BigDecimal amount;
     @Enumerated(EnumType.STRING)
     private Status status;//spring want to know which relationship between payment and payment details
-    @OneToOne
+   // @OneToOne(cascade = CascadeType.ALL)//the spring will save,REMOVE automatically payment details
+   @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "payment_detail_id")
-    private PaymentDetail paymentDetail;
-
+    private PaymentDetail paymentDetail;//has relationship for spring means join
+    @ManyToOne
+    private Merchant merchant;
     public Payment(LocalDate createdDate, BigDecimal amount, Status status) {
         this.createdDate = createdDate;
         this.amount = amount;

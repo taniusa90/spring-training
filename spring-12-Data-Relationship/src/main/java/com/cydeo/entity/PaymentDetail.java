@@ -1,5 +1,6 @@
 package com.cydeo.entity;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
+@Data
 @Table(name = "paymentsDetails")
 public class PaymentDetail {
     @Id
@@ -17,6 +19,8 @@ public class PaymentDetail {
     private BigDecimal commissionAmount;
     @Column(columnDefinition = "DATE")
     private LocalDate payoutDate;
+    @OneToOne(mappedBy = "paymentDetail")//do no create foreign key inside the Payment Details ,but I was ownership payment
+    private Payment payment;
 
     public PaymentDetail(BigDecimal merchantPayoutAmount, BigDecimal commissionAmount, LocalDate payoutDate) {
         this.merchantPayoutAmount = merchantPayoutAmount;
