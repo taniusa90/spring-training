@@ -28,6 +28,8 @@ public class Payment {
     private PaymentDetail paymentDetail;//has relationship for spring means join
     @ManyToOne
     private Merchant merchant;
+    @ManyToOne
+    private Customer customer;
     public Payment(LocalDate createdDate, BigDecimal amount, Status status) {
         this.createdDate = createdDate;
         this.amount = amount;
