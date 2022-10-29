@@ -39,10 +39,64 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     //Display all employees that the email address is not
     List<Employee>findByEmailIsNull();
 
-    @Query("SELECT employee FROM Employee employee WHERE employee.email='amcnee1@google.es'" )
+    @Query("SELECT employee FROM Employee employee WHERE employee.email='amcnee1@google.es'")
     Employee retrieveEmployeeDetail();
-  @Query("SELECT e.salary FROM Employee e WHERE e.email= 'amcnee1@google.es'")
-   Integer retrieveEmployeeSalary();
+
+    @Query("SELECT e.salary FROM Employee e WHERE e.email= 'amcnee1@google.es'")
+    Integer retrieveEmployeeSalary();
+
+    //Not equal
+    @Query("SELECT e FROM Employee e WHERE e.salary <> ?1")
+    List<Employee>retrieveEmployeeSalaryNotEqual(int salary);
+
+    //Like/Contains/Startswiths/Endwiths
+    @Query("SELECT e FROM Employee e WHERE e.firstName LIKE ?1")
+    List<Employee>retrieveEmployeeFirstNameLike(String pattern);
+
+    //Less Than
+    @Query("SELECT e FROM Employee  e WHERE e.salary < ?1")
+    List<Employee>retrieveEmployeeSalaryLessThan(int salary);
+
+    //Greater Than
+    @Query("SELECT e.firstName FROM Employee  e WHERE e.salary > ?1")
+    List<Employee>retrieveEmployeeSalaryGreaterThan(int salary);
+
+    //Between
+    @Query("SELECT e FROM Employee  e WHERE e.salary BETWEEN ?1 AND ?2")
+    List<Employee>retrieveEmployeeSalaryBetween(int salary1,int salary2);
+
+    //Before
+    @Query("SELECT e FROM Employee e WHERE e.hireDate >?1")
+    List<Employee>retrieveEmployeeHireDateBefore(LocalDate date);
+
+    //NULL
+    @Query("SELECT e FROM Employee e WHERE e.email IS NULL ")
+    List<Employee>retrieveEmployeeIsNull();
+
+    //NOT NULL
+    @Query("SELECT e FROM Employee e WHERE e.email IS NULL ")
+    List<Employee>retrieveEmployeeIsNotNull();
+
+    //Sorting in ASC Ord
+    @Query("SELECT e FROM Employee e  ORDER BY e.salary")
+    List<Employee>retrieveEmployeeSalaryOrderAs();
+
+    @Query("SELECT e FROM Employee e  ORDER BY e.salary DESC ")
+    List<Employee>retrieveEmployeeSalaryOrderDesc();
+
+    //NATIVE Query
+    @Query(value = "SELECT * FROM Employee WHERE salary =?1",nativeQuery = true)
+    List<Employee> retrieveEmployeeDetailBySalary(int salary);
+
+
+
+
+
+
+
+
+
+
 
 
 
