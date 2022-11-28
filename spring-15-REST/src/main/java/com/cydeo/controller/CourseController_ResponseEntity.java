@@ -1,6 +1,7 @@
 package com.cydeo.controller;
 
 import com.cydeo.dto.CourseDTO;
+import com.cydeo.dto.ResponseWrapper;
 import com.cydeo.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,35 +19,45 @@ public class CourseController_ResponseEntity {
     public CourseController_ResponseEntity(CourseService courseService) {
         this.courseService = courseService;
     }
-   @GetMapping
-    public ResponseEntity<List<CourseDTO>> getAllCourses(){
+
+    @GetMapping
+    public ResponseEntity<List<CourseDTO>> getAllCourses() {
 
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)//I modified the status
-                .header("Version","Cydeo.V2")
-                .header("Operation","Get List")
+                .header("Version", "Cydeo.V2")
+                .header("Operation", "Get List")
                 .body(courseService.getCourses());
 
 
     }
+
     @GetMapping("{id}")
-    public ResponseEntity<CourseDTO> getCourseById(@PathVariable("id")Long courseId){
+    public ResponseEntity<CourseDTO> getCourseById(@PathVariable("id") Long courseId) {
 
         return ResponseEntity.ok(courseService.getCourseById(courseId));
     }
 
     @GetMapping("category/{name}")
-    public ResponseEntity<List<CourseDTO>>getCourseByCategory(@PathVariable("name")String category){
+    public ResponseEntity<List<CourseDTO>> getCourseByCategory(@PathVariable("name") String category) {
         return ResponseEntity.ok(courseService.getCoursesByCategory(category));
 
     }
 
     @PostMapping
-    public ResponseEntity<CourseDTO>createCourse(@RequestBody CourseDTO course){
+    public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO course) {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .header("Operation","Create")
+                .header("Operation", "Create")
                 .body(courseService.createCourse(course));
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteCourseById(@PathVariable("id") Long courseId) {
+        courseService.deleteCourseById(courseId);
+        return ResponseEntity.noContent().build();
+    }
 }
+
+
