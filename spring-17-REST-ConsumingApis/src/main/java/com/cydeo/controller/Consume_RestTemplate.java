@@ -15,7 +15,7 @@ import java.util.Arrays;
 @RequestMapping("/cydeo")
 public class Consume_RestTemplate {
 
-    private final String URI = "https://jsonplaceholder.typicode.com/users";
+    private final String URI = "https://jsonplaceholder.typicode.com/users";//I will consume this URI
 
     private final RestTemplate restTemplate;
 
@@ -26,7 +26,7 @@ public class Consume_RestTemplate {
     @GetMapping
     public ResponseEntity<User[]> readAllUsers() {
 
-        return restTemplate.getForEntity(URI, User[].class);
+        return restTemplate.getForEntity(URI, User[].class);//this already return ResposeEntity
     }
 
     @GetMapping("{id}")
@@ -41,7 +41,7 @@ public class Consume_RestTemplate {
     @GetMapping("/test")
     public ResponseEntity<Object> consumePostFromDummyApi() {
 
-        HttpHeaders headers = new HttpHeaders();
+        HttpHeaders headers = new HttpHeaders();//we setting  the headers
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.set("app-id", "6298ebfecd0551211fce37a6");
 

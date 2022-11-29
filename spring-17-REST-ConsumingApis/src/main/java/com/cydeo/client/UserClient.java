@@ -10,5 +10,5 @@ import java.util.List;
 public interface UserClient {
 
     @GetMapping("/users")
-    List<User> getUsers();
+    List<User> getUsers();//the json will be assigned to the  list User
 }
