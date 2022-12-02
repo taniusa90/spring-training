@@ -32,6 +32,7 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getAccounts());
     }
 
+
     @GetMapping
     @Operation(summary = "Read an account by id")
     public ResponseEntity<AccountDTO> getById(@RequestParam("id") Long id) throws Exception {
