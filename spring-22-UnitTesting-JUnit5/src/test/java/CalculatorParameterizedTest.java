@@ -5,15 +5,15 @@ import org.junit.jupiter.params.provider.*;
 public class CalculatorParameterizedTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"Java", "JS", "TS"})
+    @ValueSource(strings = {"Java", "JS", "TS"})//single parameter
     void testCase1(String arg) {
-        Assertions.assertFalse(arg.isEmpty());
+        Assertions.assertFalse(arg.isEmpty());//false,false
     }
 
     @ParameterizedTest
     @ValueSource(ints = {3, 6, 9})
     void testCase1(int num) {
-        Assertions.assertEquals(0, num % 3);
+        Assertions.assertEquals(0, num % 3);//0 equals with reminder
     }
 
     @ParameterizedTest
@@ -37,11 +37,11 @@ public class CalculatorParameterizedTest {
 
     @ParameterizedTest
     @CsvSource({
-            "10, 20, 30",
-            "20, 20, 40",
-            "30, 20, 100"
+            "10, 20, 30",//testcase1
+            "20, 20, 40",//testcase2
+            "30, 20, 100"//testcase3
     })
-    void testCase5(int num1, int num2, int result) {
+    void testCase5(int num1, int num2, int result) {//num1=10;num2=20;result=30;
         Assertions.assertEquals(result, Calculator.add(num1, num2));
     }
 
