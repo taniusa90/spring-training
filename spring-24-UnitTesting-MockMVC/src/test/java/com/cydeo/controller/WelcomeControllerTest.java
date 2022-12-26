@@ -12,11 +12,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(WelcomeController.class)
+@WebMvcTest(WelcomeController.class)//we add the class that we are test
 public class WelcomeControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    private MockMvc mvc;//send the request
 
     @Test
     void welcome_Test() throws Exception {
@@ -24,13 +24,13 @@ public class WelcomeControllerTest {
         // call /welcome endpoint
         // verify response is "welcome"
 
-        RequestBuilder request = MockMvcRequestBuilders.get("/welcome")
-                .accept(MediaType.APPLICATION_JSON);
+        RequestBuilder request = MockMvcRequestBuilders.get("/welcome")//request
+                .accept(MediaType.APPLICATION_JSON);//header
 
-        MvcResult result = mvc.perform(request).andReturn();
+        MvcResult result = mvc.perform(request).andReturn();//send the request
 
-        assertEquals(200, result.getResponse().getStatus());
-        assertEquals("welcome", result.getResponse().getContentAsString());
+        assertEquals(200, result.getResponse().getStatus());//we check the status
+        assertEquals("welcome", result.getResponse().getContentAsString());//we check the content
 
     }
 
